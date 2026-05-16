@@ -20,7 +20,7 @@
     "node-fetch": "^2.6.1",
     "nth-check": "^1.0.2",
     "semver": "^7.3.7",
-    "tough-cookie": "^4.1.2",
+    "tough-cookie": "^6.0.1",
     "word-wrap": "^1.2.3",
     "xml2js": "^0.4.23"
   }
