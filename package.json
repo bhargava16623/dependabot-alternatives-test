@@ -21,7 +21,7 @@
     "nth-check": "^1.0.2",
     "semver": "^7.3.7",
     "tough-cookie": "^4.1.2",
-    "word-wrap": "^1.2.3",
+    "word-wrap": "^1.2.5",
     "xml2js": "^0.4.23"
   }
 }
