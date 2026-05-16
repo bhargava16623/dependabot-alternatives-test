@@ -1,0 +1,27 @@
+{
+  "name": "dependabotalternativeexploration",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.3.1",
+    "express": "^4.17.1",
+    "json5": "^2.2.1",
+    "lodash": "^4.17.15",
+    "minimist": "^1.2.5",
+    "node-fetch": "^2.6.1",
+    "nth-check": "^1.0.2",
+    "semver": "^7.3.7",
+    "tough-cookie": "^4.1.2",
+    "word-wrap": "^1.2.3",
+    "xml2js": "^0.4.23"
+  }
+}

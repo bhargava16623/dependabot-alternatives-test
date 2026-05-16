@@ -1,0 +1,238 @@
+---
+// Example usage of dependencies to make the project realistic
+// These imports demonstrate real-world usage patterns
+import _ from 'lodash';
+import semver from 'semver';
+import JSON5 from 'json5';
+
+const projectInfo = {
+  name: "Dependabot Alternatives Test",
+  version: "1.0.0",
+  description: "Testing security scanning tools against an Astro project with known vulnerable dependencies",
+  dependencies: [
+    { name: "lodash", version: "4.17.15", issue: "Prototype Pollution & ReDoS" },
+    { name: "minimist", version: "1.2.5", issue: "Prototype Pollution" },
+    { name: "json5", version: "2.2.1", issue: "Prototype Pollution" },
+    { name: "semver", version: "7.3.7", issue: "ReDoS" },
+    { name: "tough-cookie", version: "4.1.2", issue: "Prototype Pollution" },
+    { name: "word-wrap", version: "1.2.3", issue: "ReDoS" },
+    { name: "xml2js", version: "0.4.23", issue: "Prototype Pollution" },
+    { name: "node-fetch", version: "2.6.1", issue: "Information Exposure" },
+    { name: "express", version: "4.17.1", issue: "Multiple (path traversal, ReDoS)" },
+    { name: "nth-check", version: "1.0.2", issue: "ReDoS" },
+  ],
+};
+
+// Use lodash to group by issue type
+const grouped = _.groupBy(projectInfo.dependencies, 'issue');
+const issueTypes = Object.keys(grouped);
+
+// Use semver to check version validity
+const validVersions = projectInfo.dependencies.filter(dep => semver.valid(dep.version));
+
+// Use JSON5 to parse a config string
+const config = JSON5.parse(`{
+  scanInterval: "daily",
+  autoFix: true,
+  severity: ["critical", "high", "moderate"]
+}`);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Dependabot Alternatives Test Project</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --accent: #38bdf8;
+        --accent-2: #a78bfa;
+        --text: #e2e8f0;
+        --text-muted: #94a3b8;
+        --danger: #f87171;
+        --warning: #fbbf24;
+        --success: #34d399;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 2rem;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.25rem;
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .stat-card .label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .stat-card .value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 0.25rem;
+      }
+
+      .stat-card .value.critical { color: var(--danger); }
+      .stat-card .value.high { color: var(--warning); }
+      .stat-card .value.moderate { color: var(--accent); }
+
+      .dep-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .dep-table th {
+        text-align: left;
+        padding: 0.75rem 1rem;
+        background: rgba(255,255,255,0.03);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+      }
+
+      .dep-table td {
+        padding: 0.75rem 1rem;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.9rem;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.2rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .badge.proto-pollution { background: rgba(248,113,113,0.15); color: var(--danger); }
+      .badge.redos { background: rgba(251,191,36,0.15); color: var(--warning); }
+      .badge.other { background: rgba(56,189,248,0.15); color: var(--accent); }
+
+      .footer {
+        margin-top: 2rem;
+        padding: 1rem;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+      }
+
+      .warning-banner {
+        background: rgba(251,191,36,0.1);
+        border: 1px solid rgba(251,191,36,0.3);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        color: var(--warning);
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔒 {projectInfo.name}</h1>
+      <p class="subtitle">{projectInfo.description}</p>
+
+      <div class="warning-banner">
+        ⚠️ This project intentionally uses vulnerable dependencies for security tool testing. Do NOT deploy to production.
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="label">Total Vulnerabilities</div>
+          <div class="value critical">17</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Vulnerable Packages</div>
+          <div class="value high">{projectInfo.dependencies.length}</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Issue Types</div>
+          <div class="value moderate">{issueTypes.length}</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Scan Config</div>
+          <div class="value" style="font-size:1rem; color:var(--success);">{config.scanInterval}</div>
+        </div>
+      </div>
+
+      <table class="dep-table">
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>Version</th>
+            <th>Vulnerability</th>
+            <th>Valid?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projectInfo.dependencies.map(dep => (
+            <tr>
+              <td><strong>{dep.name}</strong></td>
+              <td><code>{dep.version}</code></td>
+              <td>
+                <span class={`badge ${dep.issue.includes('Prototype') ? 'proto-pollution' : dep.issue.includes('ReDoS') ? 'redos' : 'other'}`}>
+                  {dep.issue}
+                </span>
+              </td>
+              <td>{validVersions.find(v => v.name === dep.name) ? '✅' : '❌'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <div class="footer">
+        <p>Built with Astro • Testing: Renovate, Snyk, Socket, Depfu, Aikido, Endor Labs</p>
+      </div>
+    </div>
+  </body>
+</html>
