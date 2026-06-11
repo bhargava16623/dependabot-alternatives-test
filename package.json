@@ -12,7 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.3.1",
+    "astro": "^6.4.6",
     "express": "^4.17.1",
     "json5": "^2.2.1",
     "lodash": "^4.17.15",
