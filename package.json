@@ -19,7 +19,7 @@
     "minimist": "^1.2.5",
     "node-fetch": "^2.6.1",
     "nth-check": "^1.0.2",
-    "semver": "^7.3.7",
+    "semver": "^7.8.5",
     "tough-cookie": "^4.1.2",
     "word-wrap": "^1.2.3",
     "xml2js": "^0.4.23"
